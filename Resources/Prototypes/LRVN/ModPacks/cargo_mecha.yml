@@ -1,0 +1,74 @@
+- type: cargoProduct
+  id: CargoMechaGygax
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: gygax
+  product: CrateMechaGygax
+  cost: 50000
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: entity
+  id: CrateMechaGygax
+  parent: CrateWeaponSecure
+  name: ящик с Гигаксом
+  description: Содержит МАТЬЕГО Гигакса. Для управления стрельбой нужен передатчик сигналов. Для открытия требуется доступ в оружейную. 
+  components:
+  - type: StorageFill
+    contents:
+    - id: MechGygaxBattery
+      amount: 1
+    - id: RemoteSignaller
+      amount: 1
+    - id: Multitool
+      amount: 1
+
+- type: cargoProduct
+  id: CargoMechaDurand
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: durand
+  product: CrateMechaDurand
+  cost: 75000
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: entity
+  id: CrateMechaDurand
+  parent: CrateWeaponSecure
+  name: ящик с Дюрандом
+  description: Содержит ОБОЖЕМОЙ Дюранда. Для управления стрельбой нужен передатчик сигналов. Для открытия требуется доступ в оружейную. 
+  components:
+  - type: StorageFill
+    contents:
+    - id: MechDurandBattery
+      amount: 1
+    - id: RemoteSignaller
+      amount: 1
+    - id: Multitool
+      amount: 1
+
+- type: cargoProduct
+  id: CargoMechaClarke
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: clarke
+  product: CrateMechaClarke
+  cost: 15000
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: entity
+  id: CrateMechaClarke
+  parent: CrateWeaponSecure
+  name: ящик с Кларком
+  description: Содержит шахтёрского меха модели "Кларк". Для управления стрельбой нужен передатчик сигналов. Для открытия требуется доступ в оружейную. 
+  components:
+  - type: StorageFill
+    contents:
+    - id: MechClarkeBattery
+      amount: 1
+    - id: RemoteSignaller
+      amount: 1
+    - id: Multitool
+      amount: 1

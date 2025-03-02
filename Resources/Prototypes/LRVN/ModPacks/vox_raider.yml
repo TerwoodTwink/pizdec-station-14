@@ -1,0 +1,359 @@
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitVox
+  name: шлем рейдерского скафандра воксов
+  suffix: Пиздец Станция
+  noSpawn: true
+  description: Странный серый костюм... На нём нанесены символы на непонятном вам языке, а ещё от него воняет курицей.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: /Uploaded/Vox/HardSuitHead.rsi
+  - type: Clothing
+    sprite: /Uploaded/Vox/HardSuitHead.rsi
+  - type: PointLight
+    color: "#7500ff"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    coefficient: 0.005
+  - type: FireProtection
+    reduction: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: HideLayerClothing
+    slots:
+    - Snout
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseToggleClothing]
+  id: ClothingOuterHardsuitVox
+  name: рейдерский скафандр воксов
+  description: Странный серый костюм... На нём нанесены символы на непонятном вам языке, а также от него воняет курицей.
+  suffix: Пиздец Станция
+  components:
+  - type: Sprite
+    sprite: LRVN/Clothing/Vox/HardSuit.rsi
+  - type: Clothing
+    sprite: LRVN/Clothing/Vox/HardSuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    coefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8 
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.4
+        Radiation: 0.005
+        Caustic: 0.4
+  - type: Item
+    size: Huge
+  - type: ClothingSpeedModifier
+    walkModifier: 1.2
+    sprintModifier: 1.2
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitVox_rtr
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.5
+      lastVisibility: 0.5
+  - type: UseDelay
+    delay: 5
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasVoxReider
+  suffix: Пиздец Станция
+  name: Рейдерская маска
+  description: Удобная чёрная маска.. идеально подходящая для клюва воксов.
+  components:
+  - type: Sprite
+    sprite: LRVN/Clothing/Vox/RaidMask.rsi
+  - type: Clothing
+    sprite: LRVN/Clothing/Vox//RaidMask.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+
+- type: entity
+  id: WeaponVoxSpikeThrower
+  parent: [BaseItem, BaseGunWieldable]
+  name: игломет воксов
+  suffix: Пиздец Станция
+  description: Легкая рейдовская винтовка Воксов, безшумная, легкая и эффективная. Есть только 1 минус - патрон мало.
+  components:
+  - type: Sprite
+    sprite: LRVN\Objects\Weapons\Guns\VoxSpike.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: LRVN\Objects\Weapons\Guns\VoxSpike.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      params:
+        volume: -24
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 40
+  - type: ProjectileBatteryAmmoProvider
+    proto: BaseBulletVox_rtr
+    fireCost: 100
+
+- type: entity
+  id: BaseBulletVox
+  name: шип
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: LRVN\Objects\Weapons\Guns\VoxSpike.rsi
+    layers:
+    - state: Puh
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 16
+
+- type: randomHumanoidSettings
+  speciesBlacklist: 
+    - Diona
+    - Arachnid
+    - Moth
+    - Human
+    - SlimePerson
+    - Vulpkanin
+    - Reptilian
+    - Dwarf
+  id: MobVOXReider
+  suffix: Роль, Пиздец Станция
+  components:
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: Loadout
+      prototypes: [VOXReaderGear]
+    - type: RandomMetadata
+      nameSegments:
+      - VoxReiderName
+      - VoxReiderName
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: AutoImplant
+      implants:
+      - DeathAcidifierImplant
+    - type: GhostRole
+      name: Вокс рейдер
+      description: "Вы грозный представитель расы воксов! Вы и пятеро других воксов должны выполнить все свои задачи из списка."
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  name: Энерго клинки
+  parent: EnergySword
+  suffix: Пиздец Станция
+  id: EnergyVox
+  description: Странная фигня.
+  components:
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/ebladeon.ogg
+      params:
+        volume: -6
+    soundDeactivate:
+      path: /Audio/Weapons/ebladeoff.ogg
+      params:
+        volume: -6
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        volume: -6
+        variation: 0.250
+    activatedDamage:
+        types:
+            Slash: 8
+            Heat: 8
+    deactivatedSecret: true
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Weapons/ebladehum.ogg
+      params:
+        volume: -6
+  - type: ComponentToggler
+    components:
+    - type: Sharp
+    - type: DisarmMalus
+      malus: 0.4
+  - type: Sprite
+    sprite: LRVN\Objects\Weapons\Melee\e_spike.rsi
+    layers:
+      - state: e_sword
+      - state: e_sword_blade
+        color: "#7500ff"
+        visible: false
+        shader: unshaded
+        map: [ "blade" ]
+  - type: MeleeWeapon
+    wideAnimationRotation: 145
+    attackRate: 1.5
+    hidden: true
+    damage:
+      types:
+        Blunt: 1
+  - type: Item
+    size: Tiny
+    sprite: LRVN\Objects\Weapons\Melee\e_spike.rsi
+  - type: UseDelay
+    delay: 1.0
+  - type: PointLight
+    enabled: false
+    radius: 1.5
+    energy: 1.5
+    color: "#7500ff"
+    netsync: false
+  - type: Appearance
+  - type: ToggleableLightVisuals
+    spriteLayer: blade
+    inhandVisuals:
+      left:
+      - state: inhand-left-blade
+        shader: unshaded
+      right:
+      - state: inhand-right-blade
+        shader: unshaded
+  - type: Tag
+    tags:
+    - Write
+  - type: DisarmMalus
+    malus: 0
+  - type: MultiHandedItem
+
+- type: entity
+  name: вокс рейдер
+  id: MobVOXReiderGotov
+  suffix: Роль, Пиздец Станция
+  components:
+  - type: NpcFactionMember
+    factions:
+      - Syndicate
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - VoxReiderName_rtr
+    - VoxReiderName_rtr
+  - type: RandomHumanoidSpawner
+    settings: MobVOXReider
+
+- type: startingGear
+  id: VOXReaderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTacticool
+    back: ClothingMilitaryBackpack
+    shoes: ClothingShoesBootsMagSyndie
+    belt: ClothingBeltMilitaryWebbing
+    ears: ClothingHeadsetAltFreelancer
+    gloves: ClothingHandsGlovesCombat
+    id: AgentIDCard
+    mask: ClothingMaskGasVoxReider
+
+- type: dataset
+  id: VoxReiderName
+  values:
+  - Неуловимый
+  - Чёрный
+  - КРИКТИК
+  - Робаст
+  - ЧикЧик
+  - Виксук
+  - Бомбезный
+  - Хойтов
+  - Мастер
+  - Айролит
+  - Стальной
+  - Несокрушимый
+  - Мейнер
+  - Элизуард
+  - КрууутКрич
+  - Барыга
+  - Торгаш
+  - Любитель мяса
+  - Вульпо ненависник
+  - Сто зарядный
+  - Скользкий
+  - Искатель
+  - Охотник
+  - Драконоборец
+  - Курхар
+  - Воробей
+  - Кукарикун
+  - ЧикиБричики
+  - Барбарчик
+  - Курчик
+  - КурпРукп
+  - Ядерный
+  - Молодняк
+  - Альфа
+  - Дискреминант
+  - Умний
+  - Очень умный
+  - Быстрый
+  - Ловкий
+  - Белый
+  - ЧикЧурк
+  - ЧуЧуЧУ
+  - Чакриктон
+  - Аркаша
+  - Попугай
+  - Поли
+  - Кеша
+  - Ряба
+  - Дует
+  - Нагетс
