@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: ClothingHeadSuitWithLightBase
   id: ClothingHeadHelmetHardsuitVox
   name: шлем рейдерского скафандра воксов
   suffix: Пиздец Станция
